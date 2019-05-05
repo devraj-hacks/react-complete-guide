@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Person from './Person/Person'
 
-class App extends Component {
-  state = {
+const app = (props) => {
+  const [personState, setPersonState] = useState({
     persons: [
       {name: "Devraj", age: 28},
       {name: "Jaggu", age: 29},
       {name: "Shoitaan", age: 30}
     ],
     otherState: "Sample state"
-  }
+  });//always return 2 elements: 1st element always be our current state 2nd eleent will be the function where we can update the state 
 
-  switchNameHandler = () => {
+  const switchNameHandler = () => {
     // console.log("This was clicked");
     // this.state.persons[0].name = "Gabbar Singh"
-    this.setState({
+    setPersonState({
       persons: [
         {name: "Devraj Boddu", age: 28},
         {name: "Jaggu", age: 29},
@@ -23,18 +23,16 @@ class App extends Component {
       ]
     })
   }
-  render() {
     return (
       <div className="App">
         <h1> Hello, React World</h1>
-        <button onClick= {this.switchNameHandler}>Switch</button>
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age}>My Hobbies: Playing Cricket </Person>
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>My Hobbies: Playing PUBG </Person>
-        <Person name={this.state.persons[2].name} age={this.state.persons[2].age}>My Hobbies: Eating </Person>
+        <button onClick= {switchNameHandler}>Switch</button>
+        <Person name={personState.persons[0].name} age={personState.persons[0].age}>My Hobbies: Playing Cricket </Person>
+        <Person name={personState.persons[1].name} age={personState.persons[1].age}>My Hobbies: Playing PUBG </Person>
+        <Person name={personState.persons[2].name} age={personState.persons[2].age}>My Hobbies: Eating </Person>
       </div>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement("h1", null, "Hello, React World!!"));
-  }
 }
 
-export default App;
+export default app;
